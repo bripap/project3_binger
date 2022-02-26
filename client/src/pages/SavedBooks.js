@@ -12,6 +12,8 @@ import { QUERY_ME } from '../utils/queries';
 import { REMOVE_BOOK } from '../utils/mutations';
 import { removeBookId } from '../utils/localStorage';
 
+import '../pages/pages.css';
+
 import Auth from '../utils/auth';
 
 const SavedBooks = () => {
@@ -49,16 +51,16 @@ const SavedBooks = () => {
     <>
       <Jumbotron fluid className="text-light bg-dark">
         <Container>
-          <h1>Viewing {userData.username}'s books!</h1>
+          <h1>{userData.username}'s Watchlist</h1>
         </Container>
       </Jumbotron>
       <Container>
         <h2>
           {userData.savedBooks?.length
-            ? `Viewing ${userData.savedBooks.length} saved ${
-                userData.savedBooks.length === 1 ? 'book' : 'books'
+            ? `${userData.savedBooks.length} saved ${
+                userData.savedBooks.length === 1 ? 'movies and tv shows' : 'movies and tv shows'
               }:`
-            : 'You have no saved books!'}
+            : 'You have nothing saved to your watchlist ☹'}
         </h2>
         <CardColumns>
           {userData.savedBooks?.map((book) => {
@@ -67,7 +69,7 @@ const SavedBooks = () => {
                 {book.image ? (
                   <Card.Img
                     src={book.image}
-                    alt={`The cover for ${book.title}`}
+                    alt={`The image for ${book.title}`}
                     variant="top"
                   />
                 ) : null}
@@ -79,7 +81,7 @@ const SavedBooks = () => {
                     className="btn-block btn-danger"
                     onClick={() => handleDeleteBook(book.bookId)}
                   >
-                    Delete this Book!
+                    Delete from watchlist
                   </Button>
                 </Card.Body>
               </Card>
