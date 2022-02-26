@@ -9,13 +9,14 @@
     "install": "cd server && npm i && cd ../client && npm i",
     "build": "cd client && npm run build",
     "eslint": "eslint src"
-
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "concurrently": "^5.1.0",
-    "eslint": "^8.10.0"
+    "concurrently": "^5.1.0"
+  },
+  "dependencies": {
+    "eslint": "7.11"
   }
 }
