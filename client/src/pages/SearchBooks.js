@@ -145,8 +145,8 @@ const SearchBooks = () => {
                       onClick={() => handleSaveBook(book.bookId)}
                     >
                       {savedBookIds?.some((savedId) => savedId === book.bookId)
-                        ? 'Book Already Saved!'
-                        : 'Save This Book!'}
+                        ? 'Item already saved to your watchlist Already Saved!'
+                        : 'Save to watchlist'}
                     </Button>
                   )}
                 </Card.Body>
