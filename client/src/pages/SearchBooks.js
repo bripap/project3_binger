@@ -57,6 +57,9 @@ const SearchBooks = () => {
         title: book.volumeInfo.title,
         description: book.volumeInfo.description,
         image: book.volumeInfo.imageLinks?.thumbnail || '',
+        review: '',
+        rating: -1,
+        watched: false,
       }));
 
       setSearchedBooks(bookData);

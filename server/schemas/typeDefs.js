@@ -16,6 +16,9 @@ const typeDefs = gql`
     image: String
     link: String
     title: String!
+    review: String
+    rating: Int
+    watched: Boolean
   }
 
   type Auth {
@@ -30,6 +33,9 @@ const typeDefs = gql`
     image: String
     link: String
     title: String!
+    review: String
+    rating: Int
+    watched: Boolean
   }
 
   type Query {
