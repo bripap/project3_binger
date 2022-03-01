@@ -12,7 +12,6 @@ import {
 import { useMutation } from '@apollo/client';
 import { SAVE_BOOK } from '../utils/mutations';
 import { saveBookIds, getSavedBookIds } from '../utils/localStorage';
-
 import Auth from '../utils/auth';
 
 const SearchBooks = () => {
@@ -23,8 +22,7 @@ const SearchBooks = () => {
 
   // create state to hold saved bookId values
   const [savedBookIds, setSavedBookIds] = useState(getSavedBookIds());
-
-  const [saveBook, { error }] = useMutation(SAVE_BOOK);
+  const [saveBook] = useMutation(SAVE_BOOK);
 
   // set up useEffect hook to save `savedBookIds` list to localStorage on component unmount
   // learn more here: https://reactjs.org/docs/hooks-effect.html#effects-with-cleanup
@@ -42,22 +40,21 @@ const SearchBooks = () => {
 
     try {
       const response = await fetch(
-        `https://www.googleapis.com/books/v1/volumes?q=${searchInput}`
+        `https://api.themoviedb.org/3/search/multi?api_key=${process.env.REACT_APP_API_KEY}&language=en-UsS&query=${searchInput}&page=1&include_adult=false`
       );
 
       if (!response.ok) {
         throw new Error('something went wrong!');
       }
-
-      const { items } = await response.json();
-
-      const bookData = items.map((book) => ({
+      const { results } = await response.json();
+      console.log (results);
+      const bookData = results.map((book) => ({
         bookId: book.id,
-        authors: book.volumeInfo.authors || ['No author to display'],
-        title: book.volumeInfo.title,
-        description: book.volumeInfo.description,
-        image: book.volumeInfo.imageLinks?.thumbnail || '',
-      }));
+        title: book.title,
+        description: book.overview,
+        image: `https://image.tmdb.org/t/p/w300/${book.poster_path}`
+      }
+      ));
 
       setSearchedBooks(bookData);
       setSearchInput('');
@@ -134,7 +131,6 @@ const SearchBooks = () => {
                 ) : null}
                 <Card.Body>
                   <Card.Title>{book.title}</Card.Title>
-                  <p className="small">Authors: {book.authors}</p>
                   <Card.Text>{book.description}</Card.Text>
                   {Auth.loggedIn() && (
                     <Button
