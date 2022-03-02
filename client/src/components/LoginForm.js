@@ -64,7 +64,7 @@ const LoginForm = () => {
           show={showAlert}
           variant="danger"
         >
-          Something went wrong with your login credentials!
+          Something went wrong with your login credentials
         </Alert>
         <Form.Group>
           <Form.Label htmlFor="email">Email</Form.Label>
@@ -77,7 +77,7 @@ const LoginForm = () => {
             required
           />
           <Form.Control.Feedback type="invalid">
-            Email is required!
+            Email is required
           </Form.Control.Feedback>
         </Form.Group>
 
@@ -92,7 +92,7 @@ const LoginForm = () => {
             required
           />
           <Form.Control.Feedback type="invalid">
-            Password is required!
+            Password is required
           </Form.Control.Feedback>
         </Form.Group>
         <Button

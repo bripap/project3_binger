@@ -1,1 +1,12 @@
-/* will be adding css for components files here */
+.navbarstyle {
+    background-color: rgb(38, 0, 128);
+    
+}
+
+#logo, #searchnav, #watchlist_link, #logout, #login_signup {
+    color: white;
+
+}
+
+
+

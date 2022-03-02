@@ -1,1 +1,14 @@
-/* will be adding css for pages files here */
+.text-light {
+    background-color: rgb(38, 0, 128);
+    
+  }
+
+#prompt {
+    font-size: 33px;
+}
+  
+
+#begin {
+    text-align: center;
+    font-size: 25px;
+}
