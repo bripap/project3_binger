@@ -29,9 +29,9 @@ export const CommentForm = ({ book: { bookId, review, rating, watched }, handleU
           id="review1"
           value={comment.review}
           onChange={handleInputChange}
-          type="textarea"
+          as="textarea"
           rows="3"
-          className="form-control rounded-0"
+          
         />
       </div>
 
