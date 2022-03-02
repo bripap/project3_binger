@@ -59,7 +59,7 @@ const SearchBooks = () => {
         description: book.volumeInfo.description,
         image: book.volumeInfo.imageLinks?.thumbnail || '',
         review: '',
-        rating: -1,
+        rating: 0,
         watched: false,
       }));
 

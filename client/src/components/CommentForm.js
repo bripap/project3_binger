@@ -57,8 +57,10 @@ export const CommentForm = ({ book: { bookId, review, rating, watched }, handleU
       />
 
       <br></br>
-      <Button onClick={() => handleUpdateComment(bookId, comment) }>
-        Update Watch List
+      <Button 
+        className="btn-block"
+        onClick={() => handleUpdateComment(bookId, comment) }>
+        Update watchlist
       </Button>
     </>
   );
