@@ -17,14 +17,22 @@ import "../pages/pages.css";
 import { CommentForm } from "../components/CommentForm";
 import Auth from "../utils/auth";
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+// SavedBooks Component:
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
 const SavedBooks = () => {
   const { loading, data } = useQuery(QUERY_ME);
+
+  /* eslint-disable no-unused-vars */
   const [removeBook, { error }] = useMutation(REMOVE_BOOK);
   const [saveBook, { error1 }] = useMutation(SAVE_BOOK);
 
   const userData = data?.me || {};
 
-  // create function that accepts the book's mongo _id value as param and deletes the book from the database
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // Function handleDeleteBook - This function accepts the book's mongo _id value as param and deletes the 
+  // book from the database.
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////
   const handleDeleteBook = async (bookId) => {
     // get token
     const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -46,7 +54,7 @@ const SavedBooks = () => {
   };
 
   //////////////////////////////////////////////////////////////////////
-  // LADA'S VERSION:
+  // FUNCTION: handleUpdateComment - LADA'S VERSION:
   //////////////////////////////////////////////////////////////////////
   //const handleUpdateComment = (bookId, updatedComment) => {
   //  console.log(bookId);
@@ -124,7 +132,6 @@ const SavedBooks = () => {
       });
   
       // Save the new one that has been changed.
-      // eslint-disable no-unused-vars 
       const { data2 } = await saveBook({
         variables: { bookData: { ...updatedBook } },
       });        
