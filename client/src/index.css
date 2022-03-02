@@ -1,5 +1,5 @@
 body {
-  font-family: 'Heebo', sans-serif;
+  font-family: 'Balsamiq Sans', cursive;
   background-color: rgb(202, 202, 202);
 }
 
@@ -9,10 +9,11 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Heebo', sans-serif;
+  font-family: 'Balsamiq Sans', cursive;
 }
 
 .small {
   font-weight: 100;
   /* font-style: italic; */
 }
+

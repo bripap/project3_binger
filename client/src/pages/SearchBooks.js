@@ -14,6 +14,8 @@ import { SAVE_BOOK } from '../utils/mutations';
 import { saveBookIds, getSavedBookIds } from '../utils/localStorage';
 import Auth from '../utils/auth';
 
+import '../pages/pages.css'
+
 const SearchBooks = () => {
   // create state for holding returned google api data
   const [searchedBooks, setSearchedBooks] = useState([]);
@@ -87,9 +89,9 @@ const SearchBooks = () => {
   };
   return (
     <>
-      <Jumbotron fluid className="text-light bg-dark">
+      <Jumbotron fluid className="text-light">
         <Container>
-          <h1>Search for TV shows or movies!</h1>
+          <h1 id='prompt'>Find TV shows or movies to add to your Binger Watchlist!</h1>
           <Form onSubmit={handleFormSubmit}>
             <Form.Row>
               <Col xs={12} md={8}>
@@ -113,10 +115,10 @@ const SearchBooks = () => {
       </Jumbotron>
 
       <Container>
-        <h2>
+        <h2 id='begin'>
           {searchedBooks.length
             ? `Viewing ${searchedBooks.length} results:`
-            : 'Search for a TV show or movie to begin'}
+            : 'Search for a TV show or movie to begin 🧐'}
         </h2>
         <CardColumns>
           {searchedBooks.map((book) => {
@@ -141,7 +143,7 @@ const SearchBooks = () => {
                       onClick={() => handleSaveBook(book.bookId)}
                     >
                       {savedBookIds?.some((savedId) => savedId === book.bookId)
-                        ? 'Item already saved to your watchlist Already Saved!'
+                        ? 'Item already saved to your watchlist'
                         : 'Save to watchlist'}
                     </Button>
                   )}
