@@ -48,11 +48,12 @@ export const CommentForm = ({ book: { bookId, review, rating, watched }, handleU
       />
 
       <br></br>
-      <Form.Check
-        label="Watched"
+       <Form.Check
         name="watched"
+        label="Watched"
         checked={comment.watched}
         onChange={handleInputChange}
+       
       />
 
       <br></br>
