@@ -65,3 +65,24 @@ export const REMOVE_BOOK = gql`
     }
   }
 `;
+
+export const UPDATE_BOOK = gql`
+  mutation updateBook($posValue: Int!, $bookId: ID!, $bookData: BookInput!) {
+    updateBook(posValue: $posValue, bookId: $bookId, bookData: $bookData) {
+      _id
+      username
+      email
+      savedBooks {
+        bookId
+        authors
+        image
+        description
+        title
+        link
+        review
+        rating
+        watched
+      }
+    }
+  }
+`;

@@ -4,6 +4,7 @@ import {
   CardColumns,
   Card,
   Button,
+  Modal,
 } from "react-bootstrap";
 
 import { useQuery, useMutation } from "@apollo/client";
@@ -11,21 +12,34 @@ import { QUERY_ME } from "../utils/queries";
 import { REMOVE_BOOK } from "../utils/mutations";
 import { removeBookId } from "../utils/localStorage";
 import { SAVE_BOOK } from "../utils/mutations";
+import { UPDATE_BOOK } from "../utils/mutations";
 
 import "../pages/pages.css";
 
 import { CommentForm } from "../components/CommentForm";
+//import { InfoModal } from "../components/InfoModal";
 import Auth from "../utils/auth";
+
+import {useState} from "react";
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 // SavedBooks Component:
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 const SavedBooks = () => {
-  const { loading, data } = useQuery(QUERY_ME);
+
+  /////////////////////////////////////////////////
+  // Set State Hooks used for Modal Dialog box.
+  /////////////////////////////////////////////////
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
 
   /* eslint-disable no-unused-vars */
+  const handleShow = () => setShow(true);
+
+  const { loading, data } = useQuery(QUERY_ME);
   const [removeBook, { error }] = useMutation(REMOVE_BOOK);
   const [saveBook, { error1 }] = useMutation(SAVE_BOOK);
+  const [updateBook, { error2 }] = useMutation(UPDATE_BOOK);
 
   const userData = data?.me || {};
 
@@ -72,6 +86,7 @@ const SavedBooks = () => {
     let nIndex = 0;
     let bookFound = false;
     let ratingValue = 0;
+    let posValue = 0;
   
     // get token
     const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -115,6 +130,9 @@ const SavedBooks = () => {
           // Set the bookFound variable to true;
           bookFound = true;
   
+          // Save the index value for the position in the array.
+          posValue = nIndex;
+
           // Found the book so set the nIndex value so we exit loop.
           nIndex = userData.savedBooks.length;
         }
@@ -124,18 +142,15 @@ const SavedBooks = () => {
       if (bookFound === false) {
         return false;
       }
-  
-      // What I want to do first is to remove the current book.
-      // eslint-disable no-unused-vars 
-      const { data } = await removeBook({
-        variables: { bookId },
-      });
-  
-      // Save the new one that has been changed.
-      const { data2 } = await saveBook({
-        variables: { bookData: { ...updatedBook } },
-      });        
-    
+   
+      // Update the book in the database..
+      const { data2 } = await updateBook({
+        variables: { posValue: posValue, bookId: bookId, bookData: { ...updatedBook } },
+      });  
+
+      // Call SetShow function to display the Modal dialog box.
+      // Tell the user the update operation was performed successfully.
+      setShow(true);
     } catch (err) {
       console.error(err);
     }  
@@ -146,6 +161,24 @@ const SavedBooks = () => {
       <Jumbotron fluid className="text-light bg-dark">
         <Container>
           <h1>{userData.username}'s Watchlist</h1>
+
+        {/* ----------------------------------------------------------------- */}
+        {/* Boostrap-react Modal Dialog box - Tell User Update was successful */}
+        {/* ----------------------------------------------------------------- */}
+
+          <Modal show={show} onHide={handleClose}>
+            <Modal.Header closeButton>
+              <Modal.Title>Update Watchlist Operation:</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>The Operation Was Performed Successfully!</Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleClose}>
+                Close
+              </Button>
+            </Modal.Footer>
+          </Modal>
+        {/* ----------------------------------------------------------------- */}
+
         </Container>
       </Jumbotron>
       <Container>
