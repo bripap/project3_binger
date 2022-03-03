@@ -31,8 +31,10 @@ const SavedBooks = () => {
   // Set State Hooks used for Modal Dialog box.
   /////////////////////////////////////////////////
   const [show, setShow] = useState(false);
+  const [dlgTitleMsg, setDlgTitleMsg] = useState("");
+  const [dlgBodyMsg, setDlgBodyMsg] = useState("");  
   const handleClose = () => setShow(false);
-
+ 
   /* eslint-disable no-unused-vars */
   const handleShow = () => setShow(true);
 
@@ -64,6 +66,12 @@ const SavedBooks = () => {
       removeBookId(bookId);
     } catch (err) {
       console.error(err);
+
+      // Call SetState Hook routines to updated the data and display the dialog box
+      // to tell the user the delete operation failed.
+      setDlgTitleMsg("The Watchlist Delete Operation Failed:");
+      setDlgBodyMsg("The Following Problem Occurred:\r\n\r\n" + err.message);        
+      setShow(true);
     }
   };
 
@@ -150,9 +158,17 @@ const SavedBooks = () => {
 
       // Call SetShow function to display the Modal dialog box.
       // Tell the user the update operation was performed successfully.
+      setDlgTitleMsg("The Watchlist Upate Operation:");
+      setDlgBodyMsg("The Update Operation Was Performed Successfully!");        
       setShow(true);
     } catch (err) {
       console.error(err);
+
+      // Call SetState hook functions to updated the text and display
+      // the modal dialog box to tell the user the update operation failed.
+      setDlgTitleMsg("The Watchlist Upate Operation Failed:");
+      setDlgBodyMsg("The Following Problem Occurred:\r\n\r\n" + err.message);        
+      setShow(true);
     }  
   };
 
@@ -168,9 +184,9 @@ const SavedBooks = () => {
 
           <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>
-              <Modal.Title>Update Watchlist Operation:</Modal.Title>
+              <Modal.Title>{dlgTitleMsg}</Modal.Title>
             </Modal.Header>
-            <Modal.Body>The Operation Was Performed Successfully!</Modal.Body>
+            <Modal.Body>{dlgBodyMsg}</Modal.Body>
             <Modal.Footer>
               <Button variant="secondary" onClick={handleClose}>
                 Close
