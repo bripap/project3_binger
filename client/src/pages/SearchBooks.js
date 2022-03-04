@@ -71,6 +71,19 @@ const SearchBooks = () => {
       //////////////////////////////////////////////////////////////////////////////
       for (let nIndex = 0; nIndex < bookData.length; ++nIndex) {
         bookData[nIndex].bookId = bookData[nIndex].bookId.toString();
+
+        // If the title or description is undefined the set to a default 
+        // string value.
+        if ((bookData[nIndex].description === undefined) ||
+            (bookData[nIndex].description === "")) {
+          bookData[nIndex].description = "No Description Found";
+        }
+
+        if ((bookData[nIndex].title === undefined) ||
+            (bookData[nIndex].title === "")) {
+          bookData[nIndex].title = "No Title Found";
+        }
+
       }
 
       setSearchedBooks(bookData);
