@@ -158,7 +158,7 @@ const SavedBooks = () => {
 
       // Call SetShow function to display the Modal dialog box.
       // Tell the user the update operation was performed successfully.
-      setDlgTitleMsg("The Watchlist Upate Operation:");
+      setDlgTitleMsg("The Watchlist Update Operation:");
       setDlgBodyMsg("The Update Operation Was Performed Successfully!");        
       setShow(true);
     } catch (err) {
@@ -166,7 +166,7 @@ const SavedBooks = () => {
 
       // Call SetState hook functions to updated the text and display
       // the modal dialog box to tell the user the update operation failed.
-      setDlgTitleMsg("The Watchlist Upate Operation Failed:");
+      setDlgTitleMsg("The Watchlist Update Operation Failed:");
       setDlgBodyMsg("The Following Problem Occurred:\r\n\r\n" + err.message);        
       setShow(true);
     }  
@@ -174,7 +174,7 @@ const SavedBooks = () => {
 
   return (
     <>
-      <Jumbotron fluid className="text-light bg-dark">
+      <Jumbotron fluid className="text-light">
         <Container>
           <h1>{userData.username}'s Watchlist</h1>
 
@@ -199,7 +199,7 @@ const SavedBooks = () => {
       </Jumbotron>
       <Container>
         {loading ? (
-          <div>Books are still loading</div>
+          <div>Still loading...</div>
         ) : (
           <div>
             <h2>
