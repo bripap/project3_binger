@@ -12,8 +12,9 @@ import {
 import { useMutation } from '@apollo/client';
 import { SAVE_BOOK } from '../utils/mutations';
 import { saveBookIds, getSavedBookIds } from '../utils/localStorage';
-
 import Auth from '../utils/auth';
+
+import '../pages/pages.css'
 
 const SearchBooks = () => {
   // create state for holding returned google api data
@@ -23,9 +24,7 @@ const SearchBooks = () => {
 
   // create state to hold saved bookId values
   const [savedBookIds, setSavedBookIds] = useState(getSavedBookIds());
-
-  /* eslint-disable no-unused-vars */
-  const [saveBook, { error }] = useMutation(SAVE_BOOK);
+  const [saveBook] = useMutation(SAVE_BOOK);
 
   // set up useEffect hook to save `savedBookIds` list to localStorage on component unmount
   // learn more here: https://reactjs.org/docs/hooks-effect.html#effects-with-cleanup
@@ -43,25 +42,28 @@ const SearchBooks = () => {
 
     try {
       const response = await fetch(
-        `https://www.googleapis.com/books/v1/volumes?q=${searchInput}`
+        `https://api.themoviedb.org/3/search/multi?api_key=${process.env.REACT_APP_API_KEY}&language=en-UsS&query=${searchInput}&page=1&include_adult=false`
       );
 
       if (!response.ok) {
         throw new Error('something went wrong!');
       }
-
-      const { items } = await response.json();
-
-      const bookData = items.map((book) => ({
+      const { results } = await response.json();
+      console.log (results);
+      const bookData = results.map((book) => ({
         bookId: book.id,
-        authors: book.volumeInfo.authors || ['No author to display'],
-        title: book.volumeInfo.title,
-        description: book.volumeInfo.description,
-        image: book.volumeInfo.imageLinks?.thumbnail || '',
+        // authors: book.volumeInfo.authors || ['No author to display'],
+        // title: book.volumeInfo.title,
+        // description: book.volumeInfo.description,
+        // image: book.volumeInfo.imageLinks?.thumbnail || '',
         review: '',
         rating: 0,
         watched: false,
-      }));
+        title: book.title,
+        description: book.overview,
+        image: `https://image.tmdb.org/t/p/w300/${book.poster_path}`
+      }
+      ));
 
       setSearchedBooks(bookData);
       setSearchInput('');
@@ -94,9 +96,9 @@ const SearchBooks = () => {
   };
   return (
     <>
-      <Jumbotron fluid className="text-light bg-dark">
+      <Jumbotron fluid className="text-light">
         <Container>
-          <h1>Search for TV shows or movies!</h1>
+          <h1 id='prompt'>Find TV shows or movies to add to your Binger Watchlist!</h1>
           <Form onSubmit={handleFormSubmit}>
             <Form.Row>
               <Col xs={12} md={8}>
@@ -120,10 +122,10 @@ const SearchBooks = () => {
       </Jumbotron>
 
       <Container>
-        <h2>
+        <h2 id='begin'>
           {searchedBooks.length
             ? `Viewing ${searchedBooks.length} results:`
-            : 'Search for a TV show or movie to begin'}
+            : 'Search for a TV show or movie to begin 🧐'}
         </h2>
         <CardColumns>
           {searchedBooks.map((book) => {
@@ -138,7 +140,6 @@ const SearchBooks = () => {
                 ) : null}
                 <Card.Body>
                   <Card.Title>{book.title}</Card.Title>
-                  <p className="small">Authors: {book.authors}</p>
                   <Card.Text>{book.description}</Card.Text>
                   {Auth.loggedIn() && (
                     <Button
@@ -149,7 +150,7 @@ const SearchBooks = () => {
                       onClick={() => handleSaveBook(book.bookId)}
                     >
                       {savedBookIds?.some((savedId) => savedId === book.bookId)
-                        ? 'Item already saved to your watchlist Already Saved!'
+                        ? 'Item already saved to your watchlist'
                         : 'Save to watchlist'}
                     </Button>
                   )}

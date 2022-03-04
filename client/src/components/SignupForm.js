@@ -71,7 +71,7 @@ const SignupForm = () => {
           show={showAlert}
           variant="danger"
         >
-          Something went wrong with your signup!
+          Something went wrong with your sign-up
         </Alert>
 
         <Form.Group>
@@ -85,7 +85,7 @@ const SignupForm = () => {
             required
           />
           <Form.Control.Feedback type="invalid">
-            Username is required!
+            Username is required
           </Form.Control.Feedback>
         </Form.Group>
 
