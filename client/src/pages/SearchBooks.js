@@ -51,7 +51,7 @@ const SearchBooks = () => {
       const { results } = await response.json();
       console.log (results);
       const bookData = results.map((book) => ({
-        bookId: book.id,
+        bookId: book.id.toString(),
         // authors: book.volumeInfo.authors || ['No author to display'],
         // title: book.volumeInfo.title,
         // description: book.volumeInfo.description,
