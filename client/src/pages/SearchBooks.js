@@ -125,8 +125,34 @@ const SearchBooks = () => {
         <h2 id='begin'>
           {searchedBooks.length
             ? `Viewing ${searchedBooks.length} results:`
-            : 'Search for a TV show or movie to begin 🧐'}
+            : 'Search for a TV show or movie from any of your favorite platforms to begin 🧐'}
         </h2>
+        <div id="shows">
+          <img src={"netflix.webp"} alt="netflix" className="shows"/>
+          <img src={"prime.webp"} alt="prime" className="shows"/>
+          <img src={"disney.webp"} alt="disney" className="shows"/>
+          <img src={"apple.webp"} alt="apple" className="shows"/>
+          <img src={"hulu.webp"} alt="hulu" className="shows"/>
+          <img src={"hbo.webp"} alt="hbo" className="shows"/>
+          <img src={"abc.webp"} alt="abc" className="shows"/>
+          <img src={"amc.webp"} alt="amc" className="shows"/>
+          <img src={"peacock.webp"} alt="peacock" className="shows"/>
+          <img src={"sho.webp"} alt="sho" className="shows"/>
+          <img src={"starz.webp"} alt="starz" className="shows"/>
+          <img src={"youtube.webp"} alt="youtube" className="shows"/>
+          <img src={"paramont.webp"} alt="hbo" className="shows"/>
+          <img src={"freeform.webp"} alt="hbo" className="shows"/>
+          <img src={"epix.webp"} alt="epix" className="shows"/>
+          <img src={"tlc.webp"} alt="tlc" className="shows"/>
+          <img src={"fox.webp"} alt="fox" className="shows"/>
+          <img src={"pbs.webp"} alt="pbs" className="shows"/>
+          <img src={"cw.webp"} alt="cw" className="shows"/>
+          <img src={"history.webp"} alt="history" className="shows"/>
+          <img src={"hgtv.webp"} alt="hgtv" className="shows"/>
+          <img src={"lifetime.webp"} alt="lifetime" className="shows"/>
+        </div>
+
+
         <CardColumns>
           {searchedBooks.map((book) => {
             return (
