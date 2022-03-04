@@ -67,10 +67,12 @@ const SearchBooks = () => {
 
       //////////////////////////////////////////////////////////////////////////////
       // Added For loop to loop through the bookData array and change the bookId
-      // value from integer to string.
+      // value to a generated unique string value.  I also am testing the 
+      // title and description value.  These are required fields and if they 
+      // are undefined or empty strings I am setting them to a default value.
       //////////////////////////////////////////////////////////////////////////////
       for (let nIndex = 0; nIndex < bookData.length; ++nIndex) {
-        bookData[nIndex].bookId = bookData[nIndex].bookId.toString();
+        bookData[nIndex].bookId = Math.random().toString(36).substring(2,7);
 
         // If the title or description is undefined the set to a default 
         // string value.
@@ -106,6 +108,7 @@ const SearchBooks = () => {
     }
 
     try {
+        /* eslint-disable no-unused-vars */
       const { data } = await saveBook({
         variables: { bookData: { ...bookToSave } },
       });
