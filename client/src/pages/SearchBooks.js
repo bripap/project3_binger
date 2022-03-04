@@ -52,6 +52,13 @@ const SearchBooks = () => {
       console.log (results);
       const bookData = results.map((book) => ({
         bookId: book.id,
+        // authors: book.volumeInfo.authors || ['No author to display'],
+        // title: book.volumeInfo.title,
+        // description: book.volumeInfo.description,
+        // image: book.volumeInfo.imageLinks?.thumbnail || '',
+        review: '',
+        rating: 0,
+        watched: false,
         title: book.title,
         description: book.overview,
         image: `https://image.tmdb.org/t/p/w300/${book.poster_path}`

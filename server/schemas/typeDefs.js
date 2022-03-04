@@ -16,6 +16,9 @@ const typeDefs = gql`
     image: String
     link: String
     title: String!
+    review: String
+    rating: Int
+    watched: Boolean
   }
 
   type Auth {
@@ -30,6 +33,9 @@ const typeDefs = gql`
     image: String
     link: String
     title: String!
+    review: String
+    rating: Int
+    watched: Boolean
   }
 
   type Query {
@@ -41,6 +47,7 @@ const typeDefs = gql`
     addUser(username: String!, email: String!, password: String!): Auth
     saveBook(bookData: BookInput!): User
     removeBook(bookId: ID!): User
+    updateBook(posValue: Int!, bookId: ID!, bookData: BookInput!): User
   }
 `;
 
