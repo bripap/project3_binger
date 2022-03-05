@@ -51,7 +51,7 @@ const SearchBooks = () => {
       const { results } = await response.json();
       console.log (results);
       const bookData = results.map((book) => ({
-        bookId: book.id.toString(),
+        bookId: book.id,
         // authors: book.volumeInfo.authors || ['No author to display'],
         // title: book.volumeInfo.title,
         // description: book.volumeInfo.description,
@@ -64,6 +64,14 @@ const SearchBooks = () => {
         image: `https://image.tmdb.org/t/p/w300/${book.poster_path}`
       }
       ));
+
+      //////////////////////////////////////////////////////////////////////////////
+      // Added For loop to loop through the bookData array and change the bookId
+      // value from integer to string.
+      //////////////////////////////////////////////////////////////////////////////
+      for (let nIndex = 0; nIndex < bookData.length; ++nIndex) {
+        bookData[nIndex].bookId = bookData[nIndex].bookId.toString();
+      }
 
       setSearchedBooks(bookData);
       setSearchInput('');
