@@ -14,13 +14,13 @@ const AppNavbar = () => {
 
   return (
     <>
-      <Navbar className='navbarstyle' expand='lg'>
+      <Navbar className='navbarstyle' variant="dark" expand='lg'>
         <Container fluid>
           <Navbar.Brand as={Link} to='/' id='logo'>
             Binger Watchlist 📺
           </Navbar.Brand>
-          <Navbar.Toggle aria-controls='navbar' />
-          <Navbar.Collapse id='navbar'>
+          <Navbar.Toggle aria-controls='navbar'/>
+          <Navbar.Collapse>
             <Nav className='ml-auto'>
               <Nav.Link as={Link} to='/' id='searchnav'>
                 Search for TV or movie
