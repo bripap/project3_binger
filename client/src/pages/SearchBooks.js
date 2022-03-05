@@ -67,10 +67,25 @@ const SearchBooks = () => {
 
       //////////////////////////////////////////////////////////////////////////////
       // Added For loop to loop through the bookData array and change the bookId
-      // value from integer to string.
+      // value to a string value.  I also am testing the 
+      // title and description value.  These are required fields and if they 
+      // are undefined or empty strings I am setting them to a default value.
       //////////////////////////////////////////////////////////////////////////////
       for (let nIndex = 0; nIndex < bookData.length; ++nIndex) {
         bookData[nIndex].bookId = bookData[nIndex].bookId.toString();
+
+        // If the title or description is undefined the set to a default 
+        // string value.
+        if ((bookData[nIndex].description === undefined) ||
+            (bookData[nIndex].description === "")) {
+          bookData[nIndex].description = "No Description Found";
+        }
+
+        if ((bookData[nIndex].title === undefined) ||
+            (bookData[nIndex].title === "")) {
+          bookData[nIndex].title = "No Title Found";
+        }
+
       }
 
       setSearchedBooks(bookData);
@@ -93,6 +108,7 @@ const SearchBooks = () => {
     }
 
     try {
+        /* eslint-disable no-unused-vars */
       const { data } = await saveBook({
         variables: { bookData: { ...bookToSave } },
       });

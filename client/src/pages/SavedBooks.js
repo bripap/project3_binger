@@ -223,7 +223,7 @@ const SavedBooks = () => {
                   ) : null}
                   <Card.Body>
                     <Card.Title>{book.title}</Card.Title>
-                    <p className="small">Authors: {book.authors}</p>
+                    {/* <p className="small">Authors: {book.authors}</p> */}
                     <Card.Text>{book.description}</Card.Text>
                     <Button
                       className="btn-block btn-danger"
