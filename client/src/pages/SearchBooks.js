@@ -151,6 +151,7 @@ const SearchBooks = () => {
             ? `Viewing ${searchedBooks.length} results:`
             : 'Search for a TV show or movie from any of your favorite platforms to begin 🧐'}
         </h2>
+
         <div id="shows">
           <img src={"netflix.webp"} alt="netflix" className="shows"/>
           <img src={"prime.webp"} alt="prime" className="shows"/>
@@ -174,6 +175,7 @@ const SearchBooks = () => {
           <img src={"history.webp"} alt="history" className="shows"/>
           <img src={"hgtv.webp"} alt="hgtv" className="shows"/>
           <img src={"lifetime.webp"} alt="lifetime" className="shows"/>
+          
         </div>
 
 
