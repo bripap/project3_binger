@@ -65,36 +65,37 @@ Robert Augusta
 
 ### Home Page Performs The Search Operation:
 The user can search for TV Shows or Movies.
+<br>
 <img src="Images/Search.jpg" height="200">
 <br><br>
 
 ### Cannot Save To Watchlist If Not Logged In:
 The user can view search results but cannot perform the "Save to watchlist" Operation.
 <br>
-<img src="Images/SearchResultsNotLogin.jpg" height="300">
+<img src="Images/SearchResultsNotLogIn.jpg" width="300" height="400">
 <br><br>
 
 ### Perform The Login & Sign Up Operations:
 The user can select the Login or Sign Up Operations.
 <br>
-<img src="Images/LoginSignUp.jpg" height="150">
+<img src="Images/LoginSignUp.jpg" height="200">
 <br><br>
 
 ### User Can Add TV Show Or Movie To Watchlist:
 After Logging In the user can selet the "Save to watchlist" Option.
 <br>
-<img src="Images/SearchResultsLogin.jpg" height="300">
+<img src="Images/SearchResultsLogin.jpg" width ="300" height="400">
 <br><br>
 
 ### Watchlist Item Changes After Being Saved:
 The user told item was saved to the watchlist.
 <br>
-<img src="Images/SearchResultsSaved.jpg" height="300">
+<img src="Images/SearchResultsSaved.jpg" width="300" height="400">
 <br><br>
 
 ### The User Can View Saved Watchlist items.  Delete A Watchlist Item.  Add A Review, Rating Or Set The Watched Option By Selecting the "Update Watchlist" Option:
 <br>
-<img src="Images/UpdateValuesEntered.jpg" height="400">
+<img src="Images/UpdateValuesEntered.jpg" width="275" height="500">
 <br><br>
 
 ### User Prompted With Update Message":
